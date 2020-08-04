@@ -1,4 +1,4 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.ui
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

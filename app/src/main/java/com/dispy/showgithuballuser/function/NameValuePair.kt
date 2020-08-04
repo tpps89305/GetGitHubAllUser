@@ -1,4 +1,4 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.function
 
 class NameValuePair(
     val name: String,

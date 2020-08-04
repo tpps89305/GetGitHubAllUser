@@ -1,6 +1,6 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.function
 
-class GetAllUserCommand : BaseConnenct() {
+class GetAllUserCommand : BaseConnect() {
 
     init {
         //setParams here

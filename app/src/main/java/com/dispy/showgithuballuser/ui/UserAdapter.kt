@@ -1,18 +1,20 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.ui
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.dispy.showgithuballuser.bean.User
 import com.dispy.showgithuballuser.databinding.ItemUserBinding
 
 
-class UserAdapter(val context: Context, val users: ArrayList<User>): RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class UserAdapter(private val context: Context, private val users: ArrayList<User>): RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
-        return UserViewHolder(ItemUserBinding.inflate(layoutInflater, parent, false))
+        return UserViewHolder(
+            ItemUserBinding.inflate(layoutInflater, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -21,7 +23,7 @@ class UserAdapter(val context: Context, val users: ArrayList<User>): RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is UserViewHolder) {
-            val user: User = users.get(position)
+            val user: User = users[position]
             holder.bind(user)
         }
     }
@@ -32,16 +34,12 @@ class UserAdapter(val context: Context, val users: ArrayList<User>): RecyclerVie
         notifyDataSetChanged()
     }
 
-    internal class UserViewHolder(binding: ItemUserBinding) :
-        RecyclerView.ViewHolder(binding.getRoot()) {
-        val binding: ItemUserBinding
+    internal class UserViewHolder(private val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User?) {
             binding.user = user
             binding.executePendingBindings()
         }
 
-        init {
-            this.binding = binding
-        }
     }
 }

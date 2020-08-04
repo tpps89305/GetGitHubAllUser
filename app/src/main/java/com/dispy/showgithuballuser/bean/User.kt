@@ -1,4 +1,4 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.bean
 
 class User(
     val name: String,

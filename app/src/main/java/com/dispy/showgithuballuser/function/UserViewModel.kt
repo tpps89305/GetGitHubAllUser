@@ -1,8 +1,9 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.function
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dispy.showgithuballuser.bean.User
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -15,14 +16,20 @@ class UserViewModel {
     }
 
     fun getAllUsers() {
-        GetAllUserCommand().getResponse(object : BaseConnenct.CallBackListener {
+        GetAllUserCommand().getResponse(object : BaseConnect.CallBackListener {
             override fun onCallBack(response: String?) {
-                Log.d("GetAllUserCommand", "Response = " + response)
+                Log.d("GetAllUserCommand", "Response = $response")
                 val jsonArray: JSONArray = JSONArray(response)
-                var users = ArrayList<User>()
-                for (x in 0..jsonArray.length() - 1) {
+                val users = ArrayList<User>()
+                for (x in 0 until jsonArray.length()) {
                     val jsonObject: JSONObject = jsonArray.getJSONObject(x)
-                    users.add(User(jsonObject.getString("login"), jsonObject.getString("avatar_url")))
+                    users.add(
+                        User(
+                            jsonObject.getString(
+                                "login"
+                            ), jsonObject.getString("avatar_url")
+                        )
+                    )
                 }
                 mUsers.value = users
             }

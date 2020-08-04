@@ -1,4 +1,4 @@
-package com.dispy.showgithuballuser
+package com.dispy.showgithuballuser.function
 
 import android.annotation.SuppressLint
 import android.os.Handler
@@ -14,7 +14,7 @@ import java.net.URL
 import java.net.URLEncoder
 import kotlin.collections.ArrayList
 
-abstract class BaseConnenct {
+abstract class BaseConnect {
     private var mListener: CallBackListener? = null
     private val postParams: MutableList<NameValuePair> =
         ArrayList()
@@ -32,14 +32,19 @@ abstract class BaseConnenct {
     }
 
     fun setParams(name: String, value: String) {
-        postParams.add(NameValuePair(name, value))
+        postParams.add(
+            NameValuePair(
+                name,
+                value
+            )
+        )
     }
 
     private fun executePostRequest(
         urlStr: String,
         params: List<NameValuePair>
     ): String {
-        Log.i("BaseConnect", "Connenct to: " + urlStr)
+        Log.i("BaseConnect", "Connect to: $urlStr")
         try {
             val url = URL(urlStr)
             val conn =
@@ -47,7 +52,7 @@ abstract class BaseConnenct {
             conn.doInput = true
             conn.requestMethod = "GET"
             conn.setRequestProperty("Accept", "application/vnd.github.v3+json")
-            if (params.size > 0) {
+            if (params.isNotEmpty()) {
                 val paramsStrBuild = StringBuilder()
                 for (ii in params.indices) {
                     val pair = params[ii]
@@ -82,7 +87,7 @@ abstract class BaseConnenct {
             conn.disconnect()
             return outputBuild.toString()
         } catch (e: IOException) {
-            Log.e("BaseConnent","Fail to download data!", e)
+            Log.e("BaseConnect", "Fail to download data!", e)
         }
         return ""
     }
@@ -90,8 +95,7 @@ abstract class BaseConnenct {
     fun getResponse(listener: CallBackListener) {
         mListener = listener
         Thread(Runnable {
-            val response: String
-            response = executePostRequest(
+            val response: String = executePostRequest(
                 getPreferredUrl(),
                 postParams
             )
