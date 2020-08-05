@@ -1,6 +1,9 @@
 package com.dispy.showgithuballuser.bean
 
 class User(
-    val name: String,
-    val avatarUrl: String
+    val login: String,
+    val avatarUrl: String,
+    val name: String = "",
+    val location: String = "",
+    val url: String = ""
 )

@@ -96,7 +96,7 @@ abstract class BaseConnect {
         mListener = listener
         Thread(Runnable {
             val response: String = executePostRequest(
-                getPreferredUrl(),
+                getPreferredUrl() + getDomainSuffix(),
                 postParams
             )
             val msg = Message()
@@ -106,6 +106,8 @@ abstract class BaseConnect {
     }
 
     abstract fun getPreferredUrl(): String
+
+    abstract fun getDomainSuffix(): String
 
     interface CallBackListener {
         fun onCallBack(response: String?)

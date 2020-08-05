@@ -1,5 +1,6 @@
 package com.dispy.showgithuballuser.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -29,8 +30,17 @@ class MainActivity : AppCompatActivity() {
 
         userViewModel = UserViewModel()
         binding.viewModel = userViewModel
-        userViewModel.getAllUsers()
+        userViewModel.getData()
         userViewModel.getUsers().observe(this,
             Observer<List<User?>?> { t -> userAdapter.swapItems(t as List<User>) })
+        userAdapter.setOnClickListener(
+            object : UserAdapter.OnClickListener {
+                override fun onItemClick(login: String) {
+                    val intent: Intent = Intent(applicationContext, PaginationActivity::class.java)
+                    intent.putExtra("login", login)
+                    startActivity(intent)
+                }
+            }
+        )
     }
 }
