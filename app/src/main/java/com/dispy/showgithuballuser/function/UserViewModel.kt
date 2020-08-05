@@ -15,8 +15,8 @@ class UserViewModel {
         return mUsers
     }
 
-    fun getData() {
-        GetAllUserCommand("").getResponse(object : BaseConnect.CallBackListener {
+    fun getData(since: Int) {
+        GetAllUserCommand(since = since).getResponse(object : BaseConnect.CallBackListener {
             override fun onCallBack(response: String?) {
                 Log.d("GetAllUserCommand", "Response = $response")
                 val jsonArray: JSONArray = JSONArray(response)
@@ -25,7 +25,8 @@ class UserViewModel {
                     val jsonObject: JSONObject = jsonArray.getJSONObject(x)
                     val login = jsonObject.getString("login")
                     val avatarUrl = jsonObject.getString("avatar_url")
-                    users.add(User(login, avatarUrl))
+                    val id = jsonObject.getInt("id")
+                    users.add(User(id, login, avatarUrl))
                 }
                 mUsers.value = users
             }

@@ -3,14 +3,17 @@ package com.dispy.showgithuballuser.function
 import android.text.TextUtils
 import java.lang.StringBuilder
 
-class GetAllUserCommand(val username: String) : BaseConnect() {
+class GetAllUserCommand(val username: String = "", since: Int = 0) : BaseConnect() {
 
     private var paramsBuilder: StringBuilder = StringBuilder()
 
     init {
-        //setParams here
+        //Get the information of a user
         if (!TextUtils.isEmpty(username))
             paramsBuilder.append("/").append(username)
+        //Get all user to list, per page.
+        if (since >= 0)
+            paramsBuilder.append("?").append("since=$since")
     }
 
     override fun getPreferredUrl(): String {

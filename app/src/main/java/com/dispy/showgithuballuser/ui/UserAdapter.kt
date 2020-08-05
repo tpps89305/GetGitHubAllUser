@@ -39,7 +39,7 @@ class UserAdapter(private val context: Context, private val users: ArrayList<Use
     }
 
     fun swapItems(newItems: List<User>) {
-        users.clear()
+//        users.clear()
         users.addAll(newItems)
         notifyDataSetChanged()
     }

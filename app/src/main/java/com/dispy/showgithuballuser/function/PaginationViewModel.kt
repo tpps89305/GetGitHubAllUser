@@ -23,7 +23,8 @@ class PaginationViewModel {
                 val name = jsonObject.optString("name")
                 val location = jsonObject.optString("location")
                 val url = jsonObject.optString("url")
-                val user = User(login, avatarUrl, name, location, url)
+                val id = jsonObject.optInt("id")
+                val user = User(id, login, avatarUrl, name, location, url)
                 mUser.value = user
             }
 
