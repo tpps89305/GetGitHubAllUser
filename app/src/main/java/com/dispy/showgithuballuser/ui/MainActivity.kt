@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity() {
         isLoading = true
         userViewModel.getData(0)
         userViewModel.getUsers().observe(this,
-            Observer<List<User?>?> { t ->
-                val data: List<User> = t as List<User>
+            Observer<List<User>> { data ->
                 userIdLastSeen = data.last().id
                 totalItemsCount += data.size
                 userAdapter.swapItems(data)
