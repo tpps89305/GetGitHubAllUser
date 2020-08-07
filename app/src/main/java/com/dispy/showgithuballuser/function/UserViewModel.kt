@@ -9,10 +9,10 @@ import org.json.JSONObject
 
 class UserViewModel {
 
-    private val mUsers: MutableLiveData<List<User>> = MutableLiveData()
+    private val users: MutableLiveData<List<User>> = MutableLiveData()
 
     fun getUsers(): LiveData<List<User>> {
-        return mUsers
+        return users
     }
 
     fun getData(since: Int) {
@@ -28,7 +28,7 @@ class UserViewModel {
                     val id = jsonObject.optInt("id")
                     users.add(User(id, login, avatarUrl))
                 }
-                mUsers.value = users
+                this@UserViewModel.users.value = users
             }
 
             override fun onNoResult() {

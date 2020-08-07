@@ -15,7 +15,7 @@ import java.net.URLEncoder
 import kotlin.collections.ArrayList
 
 abstract class BaseConnect {
-    private var mListener: CallBackListener? = null
+    private var listener: CallBackListener? = null
     private val postParams: MutableList<NameValuePair> =
         ArrayList()
 
@@ -24,9 +24,9 @@ abstract class BaseConnect {
         override fun handleMessage(msg: Message) {
             val response = msg.obj.toString()
             if (TextUtils.isEmpty(response)) {
-                mListener!!.onNoResult()
+                listener!!.onNoResult()
             } else {
-                mListener!!.onCallBack(response)
+                listener!!.onCallBack(response)
             }
         }
     }
@@ -84,7 +84,7 @@ abstract class BaseConnect {
     }
 
     fun getResponse(listener: CallBackListener) {
-        mListener = listener
+        this.listener = listener
         Thread(Runnable {
             val response: String = executePostRequest(
                 getPreferredUrl() + getDomainSuffix(),

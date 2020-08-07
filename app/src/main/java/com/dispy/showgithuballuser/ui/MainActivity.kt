@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var totalItemsCount: Int = 0
     private var isLoading: Boolean = false
     private var userIdLastSeen: Int = 0
-    private var mPage: Int = 0
+    private var currentPage: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val lastItemsPosition = linearLayoutManager.findLastVisibleItemPosition()
                 if (totalItemsCount <= lastItemsPosition + 1) {
-                    if (!isLoading && mPage < 20) {
-                        Log.i("MainActivity", "Download more data, last user ID = $userIdLastSeen, page $mPage")
+                    if (!isLoading && currentPage < 20) {
+                        Log.i("MainActivity", "Download more data, last user ID = $userIdLastSeen, page $currentPage")
                         isLoading = true
                         userViewModel.getData(userIdLastSeen)
-                        mPage++
+                        currentPage++
                     }
-                    else if (mPage >= 20) {
+                    else if (currentPage >= 20) {
                         Log.i("MainActivity", "Page amount limit is 20, don't load more data.")
                     }
                 }

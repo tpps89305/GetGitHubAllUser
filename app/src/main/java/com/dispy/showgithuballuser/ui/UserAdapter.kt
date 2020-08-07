@@ -11,10 +11,10 @@ import com.dispy.showgithuballuser.databinding.ItemUserBinding
 class UserAdapter(private val context: Context, private val users: ArrayList<User>): RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
 
-    private lateinit var mListener: OnClickListener
+    private lateinit var listener: OnClickListener
 
     fun setOnClickListener(listener: OnClickListener) {
-        mListener = listener
+        this.listener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -33,13 +33,12 @@ class UserAdapter(private val context: Context, private val users: ArrayList<Use
             val user: User = users[position]
             holder.bind(user)
             holder.itemView.setOnClickListener {
-                mListener.onItemClick(user.login)
+                listener.onItemClick(user.login)
             }
         }
     }
 
     fun swapItems(newItems: List<User>) {
-//        users.clear()
         users.addAll(newItems)
         notifyDataSetChanged()
     }

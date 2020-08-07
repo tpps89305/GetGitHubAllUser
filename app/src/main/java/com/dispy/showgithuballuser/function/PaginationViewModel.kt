@@ -8,10 +8,10 @@ import org.json.JSONObject
 
 class PaginationViewModel {
 
-    private val mUser: MutableLiveData<User> = MutableLiveData()
+    private val user: MutableLiveData<User> = MutableLiveData()
 
     fun getUser(): LiveData<User> {
-        return mUser
+        return user
     }
 
     fun getData(username: String) {
@@ -25,7 +25,7 @@ class PaginationViewModel {
                 val url = jsonObject.optString("url")
                 val id = jsonObject.optInt("id")
                 val user = User(id, login, avatarUrl, name, location, url)
-                mUser.value = user
+                this@PaginationViewModel.user.value = user
             }
 
             override fun onNoResult() {
