@@ -3,7 +3,7 @@ package com.dispy.showgithuballuser.function
 import android.text.TextUtils
 import java.lang.StringBuilder
 
-class GetAllUserCommand(val username: String = "", since: Int = 0) : BaseConnect() {
+class GetAllUserCommand(username: String = "", since: Int = 0) : BaseConnect() {
 
     private var paramsBuilder: StringBuilder = StringBuilder()
 

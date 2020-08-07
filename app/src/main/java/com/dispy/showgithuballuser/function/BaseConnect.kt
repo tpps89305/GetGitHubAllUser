@@ -31,15 +31,6 @@ abstract class BaseConnect {
         }
     }
 
-    fun setParams(name: String, value: String) {
-        postParams.add(
-            NameValuePair(
-                name,
-                value
-            )
-        )
-    }
-
     private fun executePostRequest(
         urlStr: String,
         params: List<NameValuePair>

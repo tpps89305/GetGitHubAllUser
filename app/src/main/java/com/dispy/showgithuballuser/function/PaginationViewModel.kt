@@ -17,7 +17,7 @@ class PaginationViewModel {
     fun getData(username: String) {
         GetAllUserCommand(username).getResponse(object : BaseConnect.CallBackListener {
             override fun onCallBack(response: String?) {
-                val jsonObject: JSONObject = JSONObject(response)
+                val jsonObject = JSONObject(response)
                 val login = jsonObject.optString("login")
                 val avatarUrl = jsonObject.optString("avatar_url")
                 val name = jsonObject.optString("name")

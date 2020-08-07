@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(
+        val linearLayoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL, false
         )
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         userAdapter.setOnClickListener(
             object : UserAdapter.OnClickListener {
                 override fun onItemClick(login: String) {
-                    val intent: Intent = Intent(applicationContext, PaginationActivity::class.java)
+                    val intent = Intent(applicationContext, PaginationActivity::class.java)
                     intent.putExtra("login", login)
                     startActivity(intent)
                 }
