@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.dispy.showgithuballuser.bean.User
 import org.json.JSONObject
 
-class PaginationViewModel {
+class UserDetailViewModel {
 
     private val user: MutableLiveData<User> = MutableLiveData()
 
@@ -17,7 +17,7 @@ class PaginationViewModel {
     fun getData(username: String) {
         GetAllUserCommand(username).getResponse(object : BaseConnect.CallBackListener {
             override fun onCallBack(response: String?) {
-                val jsonObject = JSONObject(response)
+                val jsonObject = JSONObject(response!!)
                 val login = jsonObject.optString("login")
                 val avatarUrl = jsonObject.optString("avatar_url")
                 val name = jsonObject.optString("name")
@@ -25,7 +25,7 @@ class PaginationViewModel {
                 val url = jsonObject.optString("url")
                 val id = jsonObject.optInt("id")
                 val user = User(id, login, avatarUrl, name, location, url)
-                this@PaginationViewModel.user.value = user
+                this@UserDetailViewModel.user.value = user
             }
 
             override fun onNoResult() {

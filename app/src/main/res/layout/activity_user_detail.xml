@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dispy.showgithuballuser.function.PaginationViewModel" />
+            type="com.dispy.showgithuballuser.function.UserDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

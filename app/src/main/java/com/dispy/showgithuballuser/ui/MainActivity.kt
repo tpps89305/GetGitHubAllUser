@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         userAdapter.setOnClickListener(
             object : UserAdapter.OnClickListener {
                 override fun onItemClick(login: String) {
-                    val intent = Intent(applicationContext, PaginationActivity::class.java)
+                    val intent = Intent(applicationContext, UserDetailActivity::class.java)
                     intent.putExtra("login", login)
                     startActivity(intent)
                 }
