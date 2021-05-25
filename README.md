@@ -8,9 +8,9 @@ The App include two page, first page is show all Github users in list, second pa
 These functions is implementation with MVVM architecture. Get and show data via Data Binding.
 
 ## Specification
-- Build Tool: Android Studio 4.0
+- Build Tool: Android Studio 4.1.2
 - Target Android Version: 10 (API Level 30)
-- Language: Kotlin 1.3.72
+- Language: Kotlin 1.4.10
 
 ## Reference
 ### Implementing MVVM Development Mode in Android
